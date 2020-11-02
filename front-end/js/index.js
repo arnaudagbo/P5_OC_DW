@@ -20,7 +20,7 @@ var product = document.getElementById("products");
 // Accès aux informations publiques sur le Premier Ministre
 ajaxGet("http://localhost:3000/api/teddies/5be9c8541c9d440000665243", function (reponse) {
     var teddy = JSON.parse(reponse);
-    // Ajout de la description et du logo dans la page web
+    // Ajout du nom, de la description, du priw et de l'image de l'ourson dans la page web
     var nameElt = document.createElement("h1");
     nameElt.textContent = teddy.name;
     var descriptionElt = document.createElement("p");
@@ -37,4 +37,32 @@ ajaxGet("http://localhost:3000/api/teddies/5be9c8541c9d440000665243", function (
     product.appendChild(logoElt);
     product.appendChild(priceElt);
     product.appendChild(colorElt);
+});
+
+// selectionne la div liste
+var listeElt = document.getElementById('list');
+// récupère la liste des oursons
+ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
+    // Transforme la réponse en un tableau d'articles
+    var articles = JSON.parse(reponse);
+    articles.forEach(function (article) {
+        // Ajout du titre et du contenu de chaque article
+        var titreElt = document.createElement("h2");
+        titreElt.textContent = article.name;
+        var contenuElt = document.createElement("p");
+        contenuElt.textContent = article.description;
+        contenuElt.style.width = "400px";
+        var logoElt = document.createElement("img");
+        logoElt.style.width = "400px";
+        logoElt.src = article.imageUrl;
+        var priceElt = document.createElement("p");
+        priceElt.textContent = article.price;
+        var colorElt = document.createElement("p");
+        colorElt.textContent = article.colors;
+        listeElt.appendChild(titreElt);
+        listeElt.appendChild(contenuElt);
+        listeElt.appendChild(logoElt);
+        listeElt.appendChild(priceElt);
+        listeElt.appendChild(colorElt);
+    });
 });
