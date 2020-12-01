@@ -20,7 +20,7 @@ ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
         nom.textContent = ourson.name;
         let linkProductsPage = document.createElement('a');
         let idProduct = ourson._id;
-        linkProductsPage.href = 'http://localhost:3000/api/teddies/' + idProduct;
+        linkProductsPage.href = 'product.html?id='+ idProduct;
         linkProductsPage.ariaLabel = "Page du produit";
         var img = document.createElement("img");
         img.style.width = "340px";
