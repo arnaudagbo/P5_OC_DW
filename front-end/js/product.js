@@ -1,7 +1,9 @@
 var product = document.getElementById('product');
-
+// recupere l'id de l'ourson dans l'url 
+var params = new URLSearchParams(window.location.search);
+var id = params.get("id");
 // affiche le nom l'image et la description d'un ourson
-ajaxGet("http://localhost:3000/api/teddies/5be9c8541c9d440000665243", function (reponse) {
+ajaxGet("http://localhost:3000/api/teddies/"+ id, function (reponse) {
     // Transforme la réponse en un élément ourson
     var ourson = JSON.parse(reponse);
     console.log(ourson);

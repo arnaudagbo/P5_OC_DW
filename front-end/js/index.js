@@ -25,6 +25,8 @@ ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
         var img = document.createElement("img");
         img.style.width = "340px";
         img.src = ourson.imageUrl;
+        var prix = document.createElement("p");
+        prix.textContent = ourson.price+"€";
         rowElt.appendChild(div);
         div.appendChild(div2);
         div2.appendChild(linkProductsPage);
@@ -32,5 +34,6 @@ ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
         div2.appendChild(div3);
         div3.appendChild(nom);
         div3.appendChild(p);
+        div3.appendChild(prix);
     });
 });
