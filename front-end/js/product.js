@@ -16,11 +16,15 @@ ajaxGet("http://localhost:3000/api/teddies/"+ id, function (reponse) {
     var p = document.createElement("p");
     p.className = 'card-text';
     p.textContent = ourson.description;
+    var prix = document.createElement("p");
+    prix.textContent = ourson.price+"€";
+    var button = document.createElement('button');
+    button.textContent = "acheter";
 
     // création des éléments contenant les informations de l'ourson
     product.appendChild(nom);
     product.appendChild(img);
     product.appendChild(p);
-    
-    
+    product.appendChild(prix);
+    product.appendChild(button);
 });
