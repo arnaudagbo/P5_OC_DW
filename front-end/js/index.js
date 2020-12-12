@@ -34,6 +34,6 @@ ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
         div2.appendChild(div3);
         div3.appendChild(nom);
         div3.appendChild(p);
-        div3.appendChild(prix);
+       // div3.appendChild(prix);
     });
 });
