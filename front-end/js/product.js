@@ -68,11 +68,31 @@ ajaxGet("http://localhost:3000/api/teddies/"+ id, function (reponse) {
     product.appendChild(button);
     product.appendChild(button2);
 
+    // Ajouter un produit au panier
+// document.getElementById("add").addEventListener("click", function(event){
+//     userPanier.push(ourson);
+//     localStorage.setItem("userPanier", JSON.stringify(userPanier));
+
+// });
+
 document.getElementById("add").addEventListener("click", function(event){
     userPanier.push(ourson);
+    alert("Vous avez ajouté ce produit dans votre panier");
     localStorage.setItem("userPanier", JSON.stringify(userPanier));
-
 });
+
+
+ajouterAuPanier = () =>{
+    //Au clic de l'user pour mettre le produit dans le panier
+    let ajouter = document.getElementById("ajouterProduitPanier");
+    ajouter.addEventListener("click", async function() {
+        const produits = await getProduits();
+    //Récupération du panier dans le localStorage et ajout du produit dans le panier avant revoit dans le localStorage
+    userPanier.push(ourson);
+    localStorage.setItem("userPanier", JSON.stringify(userPanier));
+    alert("Vous avez ajouté ce produit dans votre panier!!!!!!");
+});
+};
 
 document.getElementById("delete").addEventListener("click", function(event){
     // supprime le local storage
@@ -81,14 +101,7 @@ document.getElementById("delete").addEventListener("click", function(event){
     // efface une ligne du local storage
     userPanier.splice(0, 1); 
     localStorage.setItem('userPanier', JSON.stringify(userPanier));
+    alert("Vous avez supprimé ce produit de votre panier");
 });
 
 });
-
-
-
-// // Sauvegarder les informations dans l’espace local courant
-// localStorage.setItem("username", "John");
-
-// // Accéder à des données enregistrées
-// alert("username = " + localStorage.getItem("username"));
