@@ -37,6 +37,8 @@ panierLocalStorage.forEach((produit)=>{
     let nomProduit = document.createElement("td");
     let prixUnitProduit = document.createElement("td");
     let removeProduit = document.createElement("i");
+    let lienPageProduit = document.createElement('a');
+
 
     //Attribution des class pour le css
     ligneProduit.setAttribute("id", "produit"+i);
@@ -47,12 +49,15 @@ panierLocalStorage.forEach((produit)=>{
 
     //Insertion dans le HTML
     facture.appendChild(ligneProduit);
-    ligneProduit.appendChild(nomProduit);
+    ligneProduit.appendChild(lienPageProduit);
+    lienPageProduit.appendChild(nomProduit);
     ligneProduit.appendChild(prixUnitProduit);
     ligneProduit.appendChild(removeProduit);
 
     //Contenu des lignes
     nomProduit.innerHTML = produit.name;
     prixUnitProduit.textContent = produit.price / 100 + " €";
+    lienPageProduit.href = '../front-end/product.html?id=' + produit._id;
+    lienPageProduit.ariaLabel = "Page du produit";
 });
 
