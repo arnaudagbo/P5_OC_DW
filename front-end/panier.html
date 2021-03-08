@@ -24,9 +24,47 @@
     </div>
   </header>
   <main>
-    <div id="panier" class="text-center pt-5">
+  <div class="row">
+    <div class="col-md-4">
+
+    </div>
+    <div class="col-md-3">
+      <div id="panier" class=" pt-5" > <!-- class="text-center pt-5 -->
         panier
     </div>
+    </div>
+    
+  </div>
+  <br> <br> <br>
+<div class="row">
+  <div class="col-md-4">
+
+  </div>
+<div class="col-md-3">
+		<div class="form">
+			<form method="post" name="form-panier">
+				<fieldset>
+					<legend>Civilité</legend>
+							<label for="formPrenom" >Prénom :</label>
+							<input type="text" id="formPrenom" placeholder ="Brice" class="form-control input-control" required name="formPrenom">
+              <label for="formNom" >Nom : </label>
+							<input type="text" id="formNom" placeholder =" De Nice" class="form-control input-control" required name="formNom">
+				</fieldset> 
+				<fieldset>
+					<legend>Coordonnées</legend>
+						<label for="formMail">E-mail :</label>
+						<input type="email" id="formMail" placeholder ="brice@denice.fr" class="form-control input-control" required name="formMail">
+						<label for="formAdresse">Adresse :</label>
+						<input type="text" id="formAdresse" placeholder ="15 rue de  Nice" class="form-control input-control" required name="formAdresse">			
+						<label for="formVille">Ville :</label>
+						<input type="text" id="formVille" placeholder ="Nice" class="form-control input-control" required name="formVille">
+				</fieldset> 
+        <input type="submit" value="Commander" class="btn btn--form" id="sendForm">
+			</form>
+
+    </div>
+  </div>
+</div>
   </main>
   <footer class="text-muted">
     <div class="container">
