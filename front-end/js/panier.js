@@ -4,9 +4,6 @@ let ligneTableau = document.createElement("tr");
 let colonneNom = document.createElement("th");
 let colonnePrixUnitaire = document.createElement("th");
 let colonneRemove = document.createElement("th");
-let ligneTotal = document.createElement("tr");
-let colonneRefTotal = document.createElement("th");
-let colonnePrixPaye = document.createElement("td");
 
  //Placement de la structure dans la page et du contenu des entetes
  let factureSection = document.getElementById("panier");
@@ -64,6 +61,14 @@ panierLocalStorage.forEach((produit)=>{
     lienPageProduit.ariaLabel = "Page du produit";
 });
 
+let kikoo = 0
+panierLocalStorage.forEach((produit)=>{
+    kikoo += produit.price / 100;
+});
+
+let total = document.getElementById("total");
+total.innerHTML = "TOTAL " + kikoo + " €";
+
 const firstName = document.getElementById('firstname')
 const lastName = document.getElementById('lastname')
 const address = document.getElementById('address')
@@ -80,9 +85,11 @@ submit.addEventListener('click', function (event) { // Au moment du la soumissio
         city: city.value,
         email: email.value
       }
-
+    
+    let totalPaye = 0;
     panierLocalStorage.forEach((produit)=>{
         products.push(produit._id);
+        totalPaye += produit.price / 100;
     });
 
     let objet = {
@@ -90,25 +97,20 @@ submit.addEventListener('click', function (event) { // Au moment du la soumissio
         products
     };
     console.log(objet);
+    console.log(totalPaye);
 
     // Conversion en JSON
     let objetRequest = JSON.stringify(objet);
 
-    var request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:3000/api/teddies/order");
-    request.setRequestHeader("Content-Type", "application/json");
-    // envoi données au format JSON
-    request.send(objetRequest);
-    // récupération de la réponse
-    request.onreadystatechange = function() {
-        if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-            var response = request.responseText,
-                json = JSON.parse(response);
-                console.log(json);
-        }
-    }
+// POST request using fetch() 
+fetch("http://localhost:3000/api/teddies/order", { 
+	method: "POST", 
+	body: objetRequest, 
+	headers: { 
+		"Content-type": "application/json; charset=UTF-8"
+	} 
+}) 
+.then(response => response.json()) 
+.then(json => console.log(json)); 
 
-    contact = {};
-    products = [];
-      
   })
