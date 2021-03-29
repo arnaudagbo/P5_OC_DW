@@ -76,7 +76,7 @@ const city = document.getElementById('city')
 const email = document.getElementById('email')
 const submit = document.getElementById('sendForm')
 
-submit.addEventListener('click', function (event) { // Au moment du la soumission du formulaire :
+submita.addEventListener('click', function (event) { // Au moment du la soumission du formulaire :
     event.preventDefault()
     const contact = {
         firstName: firstName.value,
