@@ -101,6 +101,8 @@ submit.addEventListener('click', function (event) { // Au moment du la soumissio
 
     // Conversion en JSON
     let objetRequest = JSON.stringify(objet);
+    sessionStorage.setItem("prix", totalPaye);
+    sessionStorage.setItem("firstname", contact.firstName);
 
 // POST request using fetch() 
 fetch("http://localhost:3000/api/teddies/order", { 
@@ -112,7 +114,9 @@ fetch("http://localhost:3000/api/teddies/order", {
 }) 
 .then(response => response.json()) 
 // .then(json => console.log(json.orderId)) // sort l'orderId
-.then(json => console.log(json))
-//.then(json => sessionStorage.setItem("order", json)) 
+//.then(json => console.log(json))
+.then(json => sessionStorage.setItem("order", json.orderId)) 
+//localStorage.clear()
 //window.open("./confirmation.html"); //fonctionne
+document.location = './confirmation.html'
   })
