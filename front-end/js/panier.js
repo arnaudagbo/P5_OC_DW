@@ -76,7 +76,7 @@ const city = document.getElementById('city')
 const email = document.getElementById('email')
 const submit = document.getElementById('sendForm')
 
-submita.addEventListener('click', function (event) { // Au moment du la soumission du formulaire :
+submit.addEventListener('click', function (event) { // Au moment du la soumission du formulaire :
     event.preventDefault()
     const contact = {
         firstName: firstName.value,
@@ -111,6 +111,8 @@ fetch("http://localhost:3000/api/teddies/order", {
 	} 
 }) 
 .then(response => response.json()) 
-.then(json => console.log(json)); 
-
+// .then(json => console.log(json.orderId)) // sort l'orderId
+.then(json => console.log(json))
+//.then(json => sessionStorage.setItem("order", json)) 
+//window.open("./confirmation.html"); //fonctionne
   })
