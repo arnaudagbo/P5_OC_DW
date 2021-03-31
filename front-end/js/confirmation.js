@@ -23,5 +23,5 @@
 }else{
   //avertissement et redirection vers l'accueil
   alert("Aucune commande passée, vous êtes arrivé ici par erreur");
-  window.open("./index.html");
+  document.location = "./index.html";
 }

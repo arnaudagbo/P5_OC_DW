@@ -98,6 +98,20 @@ submit.addEventListener('click', function (event) { // Au moment du la soumissio
         city: city.value,
         email: email.value
       }
+
+      function valider(){
+        // si la valeur du champ prenom est non vide
+        if(document.formSaisie.prenom.value != "") {
+          // les données sont ok, on peut envoyer le formulaire    
+          return true;
+        }
+        else {
+          // sinon on affiche un message
+          alert("Saisissez le prénom");
+          // et on indique de ne pas envoyer le formulaire
+          return false;
+        }
+      }
     
     let totalPaye = 0;
     panierLocalStorage.forEach((produit)=>{
@@ -131,8 +145,4 @@ fetch("http://localhost:3000/api/teddies/order", {
 .then(json => sessionStorage.setItem("order", json.orderId))
 localStorage.clear()
 setTimeout(() => { document.location = './confirmation.html' }, 2000);
-// .then(json => console.log(json.orderId)) // sort l'orderId
-//.then(json => console.log(json))
-//window.open("./confirmation.html"); //fonctionne
-//document.location = './confirmation.html'
   })
