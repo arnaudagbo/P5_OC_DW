@@ -1,9 +1,11 @@
 //Création de la structure principale du tableau  
 let facture = document.createElement("table");
+facture.id = "tableau";
 let ligneTableau = document.createElement("tr");
 let colonneNom = document.createElement("th");
 let colonnePrixUnitaire = document.createElement("th");
 let colonneRemove = document.createElement("th");
+let ligneTotal = document.createElement("tr");
 
  //Placement de la structure dans la page et du contenu des entetes
  let factureSection = document.getElementById("panier");
@@ -66,6 +68,17 @@ panierLocalStorage.forEach((produit)=>{
     kikoo += produit.price / 100;
 });
 
+let ligneProduit = document.createElement("tr");
+let lignetotal = document.createElement("td");
+let prixtotal = document.createElement("td");
+
+facture.appendChild(ligneProduit);
+ligneProduit.appendChild(lignetotal);
+ligneProduit.appendChild(prixtotal);
+lignetotal.innerHTML = 'Total';
+prixtotal.innerHTML = kikoo+" €";
+
+
 let total = document.getElementById("total");
 total.innerHTML = "TOTAL " + kikoo + " €";
 
@@ -101,8 +114,10 @@ submit.addEventListener('click', function (event) { // Au moment du la soumissio
 
     // Conversion en JSON
     let objetRequest = JSON.stringify(objet);
+
     sessionStorage.setItem("prix", totalPaye);
     sessionStorage.setItem("firstname", contact.firstName);
+    sessionStorage.setItem("mail", contact.email);
 
 // POST request using fetch() 
 fetch("http://localhost:3000/api/teddies/order", { 
@@ -112,11 +127,12 @@ fetch("http://localhost:3000/api/teddies/order", {
 		"Content-type": "application/json; charset=UTF-8"
 	} 
 }) 
-.then(response => response.json()) 
+.then(response => response.json())
+.then(json => sessionStorage.setItem("order", json.orderId))
+localStorage.clear()
+setTimeout(() => { document.location = './confirmation.html' }, 2000);
 // .then(json => console.log(json.orderId)) // sort l'orderId
 //.then(json => console.log(json))
-.then(json => sessionStorage.setItem("order", json.orderId)) 
-//localStorage.clear()
 //window.open("./confirmation.html"); //fonctionne
-document.location = './confirmation.html'
+//document.location = './confirmation.html'
   })
