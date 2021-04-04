@@ -20,7 +20,7 @@ const city = document.getElementById('city')
 const email = document.getElementById('email')
 const submit = document.getElementById('sendForm')
 
-  if (panierLocalStorage == null || panierLocalStorage == undefined )
+  if (panierLocalStorage == null || panierLocalStorage == undefined || panierLocalStorage == "")
   {
     submit.disabled = true;
     let message = document.getElementById("panier");
@@ -67,10 +67,14 @@ const submit = document.getElementById('sendForm')
       lienPageProduit.ariaLabel = "Page du produit";
   });
   }
-let kikoo = 0
-panierLocalStorage.forEach((produit)=>{
-    kikoo += produit.price / 100;
-});
+
+function priceTotal(){
+  let price = 0
+  panierLocalStorage.forEach((produit)=>{
+  price +=produit.price / 100;
+  });
+  return price
+}
 
 let ligneProduit = document.createElement("tr");
 let lignetotal = document.createElement("td");
@@ -80,7 +84,7 @@ facture.appendChild(ligneProduit);
 ligneProduit.appendChild(lignetotal);
 ligneProduit.appendChild(prixtotal);
 lignetotal.innerHTML = 'Total';
-prixtotal.innerHTML = kikoo+" €";
+prixtotal.innerHTML = priceTotal()+" €";
 
 // Verification des inputs
 let checkNumber = /[0-9]/;
@@ -93,7 +97,7 @@ submit.addEventListener('click', function (event) { // Au moment du la soumissio
     event.preventDefault()
     if (firstName.value == "" || lastName.value == "" || address.value == "" || email.value == ""  )
         {
-            alert("Veillez à remplir tous les champs du formulaire");
+            alert("Veuillez remplir tous les champs du formulaire");
         }
         else if (checkNumber.test(firstName.value) == true || checkNumber.test(lastName.value) == true)
         {
