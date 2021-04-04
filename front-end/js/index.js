@@ -4,7 +4,6 @@ var rowElt = document.getElementById('items');
 ajaxGet("http://localhost:3000/api/teddies", function (reponse) {
     // Transforme la réponse en un tableau d'oursons
     var oursons = JSON.parse(reponse);
-    console.log(oursons);
     oursons.forEach(function (ourson) {
         // Ajout du nom, de la description, de l'image et du prix de chaque ourson
         var div = document.createElement("div");
