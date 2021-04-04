@@ -95,10 +95,7 @@ ajouterAuPanier = () =>{
 };
 
 document.getElementById("delete").addEventListener("click", function(event){
-    // supprime le local storage
-    //localStorage.clear();
-
-    // efface une ligne du local storage
+    // efface la première ligne du local storage
     userPanier.splice(0, 1); 
     localStorage.setItem('userPanier', JSON.stringify(userPanier));
     alert("Vous avez supprimé ce produit de votre panier");
