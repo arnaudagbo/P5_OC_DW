@@ -3,10 +3,9 @@ var product = document.getElementById('product');
 var params = new URLSearchParams(window.location.search);
 var id = params.get("id");
 
+// crée un
 if(localStorage.getItem("userPanier")){
-	console.log("Le panier de l'user existe dans le localStorage");
 }else{
-	console.log("Le panier n'existe pas, il va être crée et initialisé dans le localStorage");
   	//Le panier est un tableau de produits
   	let panierInit = [];
   	localStorage.setItem("userPanier", JSON.stringify(panierInit));
@@ -24,7 +23,6 @@ let userPanier = JSON.parse(localStorage.getItem("userPanier"));
 ajaxGet("http://localhost:3000/api/teddies/"+ id, function (reponse) {
     // Transforme la réponse en un élément ourson
     var ourson = JSON.parse(reponse);
-    console.log(ourson);
     // Initialisation des variables contenant les informations sur l'ourson
     var nom = document.createElement("h2");
     nom.textContent = ourson.name;
@@ -40,9 +38,6 @@ ajaxGet("http://localhost:3000/api/teddies/"+ id, function (reponse) {
     var button = document.createElement('button');
     button.textContent = "ajouter au panier";
     button.id = 'add';
-    var button2 = document.createElement('button');
-    button2.textContent = "supprimer du panier";
-    button2.id = 'delete';
     var select = document.createElement("select");
 
     // creation des variables contenant les informations pour la commande
@@ -66,39 +61,11 @@ ajaxGet("http://localhost:3000/api/teddies/"+ id, function (reponse) {
     }
     product.appendChild(prix);
     product.appendChild(button);
-    product.appendChild(button2);
-
-    // Ajouter un produit au panier
-// document.getElementById("add").addEventListener("click", function(event){
-//     userPanier.push(ourson);
-//     localStorage.setItem("userPanier", JSON.stringify(userPanier));
-
-// });
 
 document.getElementById("add").addEventListener("click", function(event){
     userPanier.push(ourson);
     alert("Vous avez ajouté ce produit dans votre panier");
     localStorage.setItem("userPanier", JSON.stringify(userPanier));
-});
-
-
-ajouterAuPanier = () =>{
-    //Au clic de l'user pour mettre le produit dans le panier
-    let ajouter = document.getElementById("ajouterProduitPanier");
-    ajouter.addEventListener("click", async function() {
-        const produits = await getProduits();
-    //Récupération du panier dans le localStorage et ajout du produit dans le panier avant revoit dans le localStorage
-    userPanier.push(ourson);
-    localStorage.setItem("userPanier", JSON.stringify(userPanier));
-    alert("Vous avez ajouté ce produit dans votre panier!!!!!!");
-});
-};
-
-document.getElementById("delete").addEventListener("click", function(event){
-    // efface la première ligne du local storage
-    userPanier.splice(0, 1); 
-    localStorage.setItem('userPanier', JSON.stringify(userPanier));
-    alert("Vous avez supprimé ce produit de votre panier");
 });
 
 });

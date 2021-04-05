@@ -87,19 +87,29 @@ lignetotal.innerHTML = 'Total';
 prixtotal.innerHTML = priceTotal()+" €";
 
 // Verification des inputs
-let checkNumber = /[0-9]/;
+function is_number(name){
+  return /[0-9]/.test(name)
+}
 
 function emailIsValid (email) {
   return /\S+@\S+\.\S+/.test(email)
 }
 
+function is_blank (word) {
+  if (word == ""){
+    return true
+  }else
+    return false
+}
+
 submit.addEventListener('click', function (event) { // Au moment du la soumission du formulaire :
     event.preventDefault()
-    if (firstName.value == "" || lastName.value == "" || address.value == "" || email.value == ""  )
+    if (is_blank(firstName.value) == true || is_blank(lastName.value) == true || is_blank(address.value) == true || is_blank(email.value) == true || is_blank(city.value) == true)
         {
             alert("Veuillez remplir tous les champs du formulaire");
         }
-        else if (checkNumber.test(firstName.value) == true || checkNumber.test(lastName.value) == true)
+       // else if (checkNumber.test(firstName.value) == true || checkNumber.test(lastName.value) == true)
+        else if ( is_number(firstName.value) == true || is_number(lastName.value) == true)
         {
             alert("Renseignez votre nom et prénom sans chiffres s'il vous plait");
         }
