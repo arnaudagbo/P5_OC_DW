@@ -42,16 +42,20 @@ const submit = document.getElementById('sendForm')
 
 
 
+
   panierLocalStorage.forEach((produit)=>{
 
-     
-      
       // Pour chaque produit une ligne est crée avec son nom, son prix et une icone pour supprimer le produit du panier
       let ligneProduit = document.createElement("tr");
       let nomProduit = document.createElement("td");
       let prixUnitProduit = document.createElement("td");
       let removeProduit = document.createElement("i");
       let lienPageProduit = document.createElement('a');
+
+      //Attribution des class pour le css
+      ligneProduit.setAttribute("id", "produit");
+      removeProduit.setAttribute("id", "remove");
+      removeProduit.setAttribute('class', "fas fa-trash-alt ");
 
       //Insertion dans le HTML
       facture.appendChild(ligneProduit);
@@ -67,6 +71,14 @@ const submit = document.getElementById('sendForm')
       lienPageProduit.ariaLabel = "Page du produit";
   });
   }
+
+
+  document.getElementById("remove").addEventListener("click", function(event){
+    alert("holaaaa");
+    panierLocalStorage.splice(0, 1);
+    localStorage.setItem('userPanier', JSON.stringify(panierLocalStorage));
+    window.location.reload();
+  });
 
 function priceTotal(){
   let price = 0
