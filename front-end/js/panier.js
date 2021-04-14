@@ -74,7 +74,7 @@ const submit = document.getElementById('sendForm')
 
 
   document.getElementById("remove").addEventListener("click", function(event){
-    alert("holaaaa");
+    alert("Vous avez supprimé le produit de votre panier");
     panierLocalStorage.splice(0, 1);
     localStorage.setItem('userPanier', JSON.stringify(panierLocalStorage));
     window.location.reload();
